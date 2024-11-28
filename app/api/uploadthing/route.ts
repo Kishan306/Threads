@@ -1,3 +1,4 @@
+export const maxDuration = 5; 
 import { createRouteHandler } from "uploadthing/next";
  
 import { ourFileRouter } from "./core";
