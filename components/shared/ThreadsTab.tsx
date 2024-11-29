@@ -9,6 +9,29 @@ interface Props {
   accountType: string;
 }
 
+interface Thread {
+  _id: string
+  text: string,
+  author: {
+    name: string,
+    image: string,
+    id: string
+  },
+  parentId: string | null,
+  community: {
+    id: string;
+    name: string;
+    image: string;
+  } | null,
+  createdAt: string,
+  children: string[],
+  comments: {
+    author: {
+      image: string
+    }
+  }[]
+}
+
 const ThreadsTab = async ({ currentUserId, accountId, accountType }: Props) => {
   let result = await fetchUserPosts(accountId);
 
@@ -16,7 +39,7 @@ const ThreadsTab = async ({ currentUserId, accountId, accountType }: Props) => {
 
   return (
     <section className="mt-9 flex flex-col gap-10">
-      {result[0].threads.map((thread) => (
+      {result[0].threads.map((thread: Thread) => (
         <ThreadCard
           key={thread._id}
           id={thread._id}
