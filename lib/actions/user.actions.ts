@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import User from "../models/user.model";
-import { connectToDB } from "../mongoose";
+import  connectToDB  from "../mongoose";
 import { UserValidation } from "../validations/user";
 import Thread from "../models/thread.model";
 import { FilterQuery, SortOrder } from "mongoose";
@@ -24,7 +24,7 @@ export async function updateUser({
   image,
   path,
 }: Params): Promise<void> {
-  connectToDB();
+  await connectToDB();
 
   try {
     await User.findOneAndUpdate(
@@ -49,7 +49,7 @@ export async function updateUser({
 
 export async function fetchUser(userId: string) {
   try {
-    connectToDB();
+    await connectToDB();
 
     return await User.findOne({ id: userId });
     // .populate({
@@ -63,7 +63,7 @@ export async function fetchUser(userId: string) {
 
 export async function fetchUserPosts(userId: string) {
   try {
-    connectToDB();
+    await connectToDB();
 
     const threads = await User.find({ id: userId }).populate({
       path: "threads",
@@ -101,7 +101,7 @@ export async function fetchUsers({
   sortBy?: SortOrder;
 }) {
   try {
-    connectToDB();
+    await connectToDB();
 
     const skipAmount = (pageNumber - 1) * pageSize;
 
@@ -138,7 +138,7 @@ export async function fetchUsers({
 
 export async function getActivity(userId: string) {
   try {
-    connectToDB();
+    await connectToDB();
 
     const userThreads = await Thread.find({ author: userId });
 

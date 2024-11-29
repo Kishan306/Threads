@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import Thread from "../models/thread.model";
 import User from "../models/user.model";
-import { connectToDB } from "../mongoose";
+import  connectToDB  from "../mongoose";
 
 interface Params {
   text: string;
@@ -19,7 +19,7 @@ export async function createThread({
   path,
 }: Params) {
   try {
-    connectToDB();
+    await connectToDB();
 
     const createdThread = await Thread.create({
       text,
@@ -38,7 +38,7 @@ export async function createThread({
 }
 
 export async function fetchPosts(pageNumber = 1, pageSize = 20) {
-  connectToDB();
+  await connectToDB();
 
   const skipAmount = (pageNumber - 1) * pageSize;
 
@@ -68,7 +68,7 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
 }
 
 export async function fetchThreadById(id: string) {
-  connectToDB();
+  await connectToDB();
 
   try {
     const thread = await Thread.findById(id)
@@ -110,7 +110,7 @@ export async function addCommentToThread(
   userId: string,
   path: string
 ){
-  connectToDB();
+  await connectToDB();
 
   try {
     const originalThread = await Thread.findById(threadId);
