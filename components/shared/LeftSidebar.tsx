@@ -13,7 +13,6 @@ export default function LeftSidebar() {
 
   const { user } = useUser();
   if(!user) return null;
-  console.log(user.id)
 
   return (
     <section className="custom-scrollbar leftsidebar">
