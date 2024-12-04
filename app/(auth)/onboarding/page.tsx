@@ -13,10 +13,10 @@ export default async function Onboarding() {
   const userData = {
     id: user?.id,
     objectId: userInfo?._id || '',
-    username: userInfo?.username || user?.username,
-    name: userInfo?.name || user?.firstName || "",
-    bio: userInfo?.bio || "",
-    imageUrl: userInfo?.image || user?.imageUrl,
+    username: userInfo ? userInfo?.username : user?.username,
+    name: userInfo ? userInfo?.name : user?.firstName || "",
+    bio: userInfo ? userInfo?.bio : "",
+    imageUrl: userInfo ? userInfo?.image : user?.imageUrl,
   };
 
   return (
