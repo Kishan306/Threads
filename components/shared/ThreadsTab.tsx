@@ -11,35 +11,34 @@ interface Props {
 }
 
 interface Thread {
-  _id: string
-  text: string,
+  _id: string;
+  text: string;
   author: {
-    name: string,
-    image: string,
-    id: string
-  },
-  parentId: string | null,
+    name: string;
+    image: string;
+    id: string;
+  };
+  parentId: string | null;
   community: {
     id: string;
     name: string;
     image: string;
-  } | null,
-  createdAt: string,
-  children: string[],
+  } | null;
+  createdAt: string;
+  children: string[];
   comments: {
     author: {
-      image: string
-    }
-  }[]
+      image: string;
+    };
+  }[];
 }
 
 const ThreadsTab = async ({ currentUserId, accountId, accountType }: Props) => {
-
   let result: any;
-  if(accountType === "Community"){
+  if (accountType === "Community") {
     result = await fetchCommunityPosts(accountId);
   } else {
-    result = await fetchUserPosts(accountId)
+    result = await fetchUserPosts(accountId);
   }
 
   if (!result) redirect("/");

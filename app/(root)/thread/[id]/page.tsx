@@ -6,7 +6,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import * as React from "react";
 
-type Params = Promise<{id: string}>
+type Params = Promise<{ id: string }>;
 
 const Page = async ({ params }: { params: Params }) => {
   const { id } = await params;

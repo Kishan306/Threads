@@ -19,8 +19,6 @@ const Page = async ({ params }: { params: Params }) => {
 
   const communityDetails = await fetchCommunityDetails(id);
 
-  console.log(communityDetails);
-
   return (
     <section>
       <ProfileHeader
@@ -66,16 +64,16 @@ const Page = async ({ params }: { params: Params }) => {
 
           <TabsContent value="members" className="w-full text-light-1">
             <section className="mt-9 flex flex-col gap-10">
-                {communityDetails?.members.map((member: any)=>(
-                    <UserCard
-                        key={member.id}
-                        id={member.id}
-                        name={member.name}
-                        username={member.username}
-                        imgUrl={member.image}
-                        personType="User"
-                    />
-                ))}
+              {communityDetails?.members.map((member: any) => (
+                <UserCard
+                  key={member.id}
+                  id={member.id}
+                  name={member.name}
+                  username={member.username}
+                  imgUrl={member.image}
+                  personType="User"
+                />
+              ))}
             </section>
           </TabsContent>
 

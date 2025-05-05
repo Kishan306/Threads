@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import Thread from "../models/thread.model";
 import User from "../models/user.model";
-import  connectToDB  from "../mongoose";
+import connectToDB from "../mongoose";
 import Community from "../models/community.model";
 
 interface Params {
@@ -13,8 +13,12 @@ interface Params {
   path: string;
 }
 
-export async function createThread({ text, author, communityId, path }: Params
-) {
+export async function createThread({
+  text,
+  author,
+  communityId,
+  path,
+}: Params) {
   try {
     await connectToDB();
 
@@ -196,21 +200,21 @@ export async function addCommentToThread(
   commentText: string,
   userId: string,
   path: string
-){
+) {
   await connectToDB();
 
   try {
     const originalThread = await Thread.findById(threadId);
 
-    if(!originalThread){
+    if (!originalThread) {
       throw new Error("Thread not found");
     }
 
     const commentThread = new Thread({
       text: commentText,
       author: userId,
-      parentId: threadId
-    })
+      parentId: threadId,
+    });
 
     const savedCommentThread = await commentThread.save();
 
@@ -220,6 +224,6 @@ export async function addCommentToThread(
 
     revalidatePath(path);
   } catch (error: any) {
-    throw new Error(`Error adding comment to thread: ${error.message}`)
+    throw new Error(`Error adding comment to thread: ${error.message}`);
   }
 }

@@ -8,13 +8,13 @@ import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-type Params = Promise<{id: string}>
+type Params = Promise<{ id: string }>;
 
 const Page = async ({ params }: { params: Params }) => {
   const user = await currentUser();
 
   if (!user) return null;
-  
+
   const { id } = await params;
 
   const userInfo = await fetchUser(id);
@@ -46,7 +46,7 @@ const Page = async ({ params }: { params: Params }) => {
                 />
                 <p className="max-sm:hidden">{tab.label}</p>
 
-                {tab.label === 'Threads' && (
+                {tab.label === "Threads" && (
                   <p className="ml-1 rounded-sm bg-light-4 px-2 py-1 !text-tiny-medium text-light-2">
                     {userInfo?.threads?.length}
                   </p>
@@ -55,8 +55,12 @@ const Page = async ({ params }: { params: Params }) => {
             ))}
           </TabsList>
 
-          {profileTabs.map((tab)=>(
-            <TabsContent key={`content-${tab.label}`} value={tab.value} className="w-full text-light-1">
+          {profileTabs.map((tab) => (
+            <TabsContent
+              key={`content-${tab.label}`}
+              value={tab.value}
+              className="w-full text-light-1"
+            >
               <ThreadsTab
                 currentUserId={user.id}
                 accountId={userInfo.id}

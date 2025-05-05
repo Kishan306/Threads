@@ -92,17 +92,17 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 
     await updateUser({
       username: values.username,
-      name: values.name, 
+      name: values.name,
       bio: values.bio,
       image: values.profile_photo,
       userId: user.id,
-      path: pathname
-    })
+      path: pathname,
+    });
 
-    if(pathname === '/profile/edit'){
+    if (pathname === "/profile/edit") {
       router.back();
     } else {
-      router.push('/')
+      router.push("/");
     }
   };
 
@@ -146,7 +146,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   onChange={(e) => handleImage(e, field.onChange)}
                 />
               </FormControl>
-              <FormMessage/>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -166,7 +166,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage/>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -186,7 +186,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage/>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -206,7 +206,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage/>
+              <FormMessage />
             </FormItem>
           )}
         />

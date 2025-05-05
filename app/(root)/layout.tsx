@@ -8,9 +8,9 @@ import RightSidebar from "@/components/shared/RightSidebar";
 import Bottombar from "@/components/shared/Bottombar";
 
 export const metadata = {
-  title: 'Threads',
-  description: 'A Next.js 13 Meta Threads App',
-}
+  title: "Threads",
+  description: "A Next.js 13 Meta Threads App",
+};
 
 const inter = Inter({ subsets: ["latin"] });
 

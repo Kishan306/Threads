@@ -66,11 +66,10 @@ export async function fetchUserPosts(userId: string) {
     await connectToDB();
 
     // Find all threads authored by the user with the given userId
-    const threads = await User.findOne({ id: userId })
-    .populate({
+    const threads = await User.findOne({ id: userId }).populate({
       path: "threads",
       model: Thread,
-      options: { sort : { createdAt: -1}},
+      options: { sort: { createdAt: -1 } },
       populate: [
         {
           path: "community",
@@ -80,7 +79,7 @@ export async function fetchUserPosts(userId: string) {
         {
           path: "children",
           model: Thread,
-          options: { sort : { createdAt: -1}},
+          options: { sort: { createdAt: -1 } },
           populate: {
             path: "author",
             model: User,

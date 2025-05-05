@@ -6,7 +6,7 @@ import Community from "../models/community.model";
 import Thread from "../models/thread.model";
 import User from "../models/user.model";
 
-import  connectToDB from "../mongoose";
+import connectToDB from "../mongoose";
 
 export async function createCommunity(
   id: string,
@@ -77,7 +77,7 @@ export async function fetchCommunityPosts(id: string) {
     const communityPosts = await Community.findById(id).populate({
       path: "threads",
       model: Thread,
-      options: { sort : { createdAt: -1}},
+      options: { sort: { createdAt: -1 } },
       populate: [
         {
           path: "author",
@@ -87,7 +87,7 @@ export async function fetchCommunityPosts(id: string) {
         {
           path: "children",
           model: Thread,
-          options: { sort : { createdAt: -1}},
+          options: { sort: { createdAt: -1 } },
           populate: {
             path: "author",
             model: User,

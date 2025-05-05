@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const result = await fetchPosts(1, 30);
   const user = await currentUser();
-  if(!user) redirect("/sign-in")
+  if (!user) redirect("/sign-in");
 
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarded) redirect("/onboarding");
@@ -22,18 +22,18 @@ export default async function Home() {
         ) : (
           <>
             {result.posts.map((post) => (
-            <ThreadCard
-              key={post._id}
-              id={post._id}
-              currentUserId={user?.id || ''}
-              parentId={post.parentId}
-              content={post.text}
-              author={post.author}
-              community={post.community}
-              createdAt={post.createdAt}
-              comments={post.comments}
-            />
-          ))}
+              <ThreadCard
+                key={post._id}
+                id={post._id}
+                currentUserId={user?.id || ""}
+                parentId={post.parentId}
+                content={post.text}
+                author={post.author}
+                community={post.community}
+                createdAt={post.createdAt}
+                comments={post.comments}
+              />
+            ))}
           </>
         )}
       </section>

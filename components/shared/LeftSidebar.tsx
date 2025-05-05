@@ -12,7 +12,7 @@ export default function LeftSidebar() {
   const pathname = usePathname();
 
   const { user } = useUser();
-  if(!user) return null;
+  if (!user) return null;
 
   return (
     <section className="custom-scrollbar leftsidebar">
@@ -22,7 +22,8 @@ export default function LeftSidebar() {
             (pathname.includes(link.route) && link.route.length > 1) ||
             pathname === link.route;
 
-          if (link.route === "/profile") link.route = `${link.route}/${user?.id}`;
+          if (link.route === "/profile")
+            link.route = `${link.route}/${user?.id}`;
 
           return (
             <Link
